@@ -220,10 +220,10 @@ class PersistentDatabaseManager {
 
 // Example usage function
 async function example() {
-    const dbManager = new PersistentDatabaseManager('./db');
+    // const dbManager = new PersistentDatabaseManager('./db');
     
     try {
-        await dbManager.init();
+        // await dbManager.init();
 
         const customer = await dbManager.createCustomer({
             email: 'user@example.com',

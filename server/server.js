@@ -3,8 +3,15 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
-import registrationRouter from './registrationHandler.js';
-import authRouter from './authHandler.js'
+import { PersistentDatabaseManager } from '../database/database.js';
+
+// ROUTES
+import registrationRouter from './registrationRouter.js';
+import authRouter from './authRouter.js';
+import adminRouter from './adminRouter.js';
+
+
+const dbManager = new PersistentDatabaseManager();
 
 dotenv.config();
 
@@ -15,7 +22,7 @@ const app = express();
 
 // Configure CORS with specific origin
 app.use(cors({
-  origin: process.env.VITE_FRONT_END_URL, // Exact origin, not wildcard
+  origin: process.env.VITE_FRONT_END_URL || 'http://localhost:5173', // Exact origin, not wildcard
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -24,13 +31,16 @@ app.use(cors({
 // Parse JSON bodies
 app.use(express.json());
 
-// Import and use your registration router
-
+// Use routers
 app.use('/', registrationRouter);
-app.use('/auth', authRouter)
-
+app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
 
 const PORT = process.env.VITE_SERVER_PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+export {
+    dbManager
+}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getPublicKey, fetchNostrProfile } from '../utils/nostrUtils';
 import { NostrProfile } from './NostrProfile';
 import { AdminDb } from './AdminDb';
 import './App.css'
@@ -18,20 +17,18 @@ function App() {
   ]
 
  function handleLogout() {
-
-  setMessage(messages[1])
-
-  setNostrProfile(null)
-  setHostUserData(null)
-  //Remove JWT from local storage
-
- }
+    setMessage(messages[1])
+    setNostrProfile(null)
+    setHostUserData(null)
+    //Remove JWT from local storage
+ };
 
  function handleLogin() {
-  setMessage(messages[2])
+    setMessage(messages[2])
+    //JWT
+ };
 
-  //JWT
- }
+ 
  
 
   return (

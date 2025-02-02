@@ -1,9 +1,8 @@
 import express from 'express';
-import { PersistentDatabaseManager } from '../database/database.js';
-import { verifySignature } from './verifyNostrSig.js';
+import { dbManager } from './server.js';
+import { verifySignature } from '../utils/nostrUtils.js';
 
 const router = express.Router();
-const dbManager = new PersistentDatabaseManager('./database');
 
 // Checks database for existing user
 router.post('/verify', async (req, res) => {

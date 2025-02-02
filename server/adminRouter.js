@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const PersistentDatabaseManager = require('../database/database');
+import express from 'express';
+import { dbManager } from './server.js';
 
-const dbManager = new PersistentDatabaseManager();
+const router = express.Router();
 
 // Get all customers
 router.get('/customers', async (req, res) => {
@@ -37,4 +36,4 @@ router.put('/customers/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
